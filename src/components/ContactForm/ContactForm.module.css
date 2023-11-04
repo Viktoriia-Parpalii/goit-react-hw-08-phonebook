@@ -36,8 +36,3 @@ input:focus {
   color: purple;
   background-color: rgba(221, 160, 221, 0.534);
 }
-.formLabel {
-  font-size: 20px;
-  font-weight: bold;
-  color: purple;
-}

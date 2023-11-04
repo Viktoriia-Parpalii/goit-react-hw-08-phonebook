@@ -21,7 +21,11 @@ const LoginPage = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <label>
         <span>Email:</span>
-        <input {...register('email', { required: true })} type="email" />
+        <input
+          {...register('email', { required: true })}
+          type="email"
+          placeholder="etyjetttty@sddagd.ua"
+        />
         {errors.email && <span>This field is required</span>}
       </label>
       <label>
@@ -29,6 +33,7 @@ const LoginPage = () => {
         <input
           {...register('password', { required: true, minLength: 7 })}
           type="password"
+          placeholder="12345678"
         />
         {errors.password && <span>This field is required</span>}
       </label>

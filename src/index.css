@@ -96,3 +96,9 @@ button {
   background-color: rgba(221, 160, 221, 0.534);
   cursor: pointer;
 }
+label {
+  font-size: 20px;
+  font-weight: bold;
+  color: purple;
+  margin: 0 auto;
+}

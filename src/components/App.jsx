@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Suspense, lazy, useEffect } from 'react';
-import { fetchContacts } from 'redux/contacts';
 
 import { Route, Routes } from 'react-router-dom';
 import Navigation from './Navigation/Navigation';
-import { CircleLoader } from 'react-spinners';
+
 import { Wrapper } from './Wrapper/Wrapper';
-import { selectAuthIsAuth } from 'redux/auth.selectors';
+import { selectAuthIsAuth, selectAuthIsLoading } from 'redux/auth.selectors';
 import UserMenu from './UserMenu/UserMenu';
 import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { refreshThunk } from 'redux/authReduser';
+import Loader from './CircleLoader/CircleLoader';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const HomePage = lazy(() => import('pages/HomePage'));
@@ -49,29 +49,17 @@ export const App = () => {
   const dispatch = useDispatch();
 
   const isAuth = useSelector(selectAuthIsAuth);
+  const isLoading = useSelector(selectAuthIsLoading);
 
   useEffect(() => {
     dispatch(refreshThunk());
-    dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
     <>
       <Navigation />
       <Wrapper>
-        <Suspense
-          fallback={
-            <CircleLoader
-              color="#670063"
-              size={100}
-              cssOverride={{
-                margin: '30px auto',
-                textAlign: 'center',
-                fontWeight: 'bold',
-              }}
-            />
-          }
-        >
+        <Suspense fallback={<Loader />}>
           <Routes>
             {appRoutes.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
@@ -79,6 +67,7 @@ export const App = () => {
           </Routes>
         </Suspense>
         {isAuth && <UserMenu />}
+        {isLoading === true && <Loader />}
       </Wrapper>
     </>
   );

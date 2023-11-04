@@ -17,7 +17,7 @@ const UserMenu = () => {
       <BiUserCheck />
       <p className={css.User}>{userEmail}</p>
       <button className={css.UserBtn} onClick={onLogOut} type="button">
-        Logout
+        Log Out
       </button>
     </div>
   );
