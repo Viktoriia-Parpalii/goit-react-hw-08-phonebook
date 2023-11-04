@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import css from './Navigation.module.css';
 import { useSelector } from 'react-redux';
 import { selectAuthIsAuth } from 'redux/auth.selectors';
+import { FcHome } from 'react-icons/fc';
 
 const Navigation = () => {
   const isAuth = useSelector(selectAuthIsAuth);
@@ -11,7 +12,7 @@ const Navigation = () => {
     <header>
       <nav>
         <NavLink className={css.navLink} to="/">
-          Home
+          <FcHome />
         </NavLink>
         {isAuth ? (
           <>
