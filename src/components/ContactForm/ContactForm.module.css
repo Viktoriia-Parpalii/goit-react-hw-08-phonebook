@@ -1,0 +1,43 @@
+.form {
+  width: 300px;
+  padding: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 10px double plum;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+input {
+  display: block;
+  padding: 8px;
+  margin: 10px 0;
+  border: 2px solid purple;
+  border-radius: 10px;
+  color: purple;
+  outline: 2px solid transparent;
+}
+.input:focus {
+  outline: 2px solid pink;
+  border: 2px solid transparent;
+}
+.formBtn {
+  margin: 5px auto;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 2px solid purple;
+  width: 150px;
+  color: purple;
+  background-color: rgba(221, 160, 221, 0.534);
+}
+.formLabel {
+  font-size: 20px;
+  font-weight: bold;
+  color: purple;
+}
