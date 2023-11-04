@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/983.32dc40a7.chunk.js","mappings":"uKAMA,UAJiB,WACf,OAAO,mDACR,C","sources":["pages/HomePage.jsx"],"sourcesContent":["import React from 'react';\n\nconst HomePage = () => {\n  return <h1>Welcome to my Phonebook</h1>;\n};\n\nexport default HomePage;\n"],"names":[],"sourceRoot":""}
