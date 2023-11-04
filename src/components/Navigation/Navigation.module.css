@@ -1,0 +1,20 @@
+header {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+}
+nav {
+  display: flex;
+  gap: 35px;
+  justify-content: center;
+}
+.navLink {
+  width: 80px;
+  text-align: center;
+  color: purple;
+  background-color: #fff;
+  padding: 10px 5px;
+  border: 2px solid purple;
+  border-radius: 10px;
+  text-decoration: none;
+}

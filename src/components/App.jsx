@@ -1,37 +1,52 @@
-import { Wrapper } from './Wrapper/Wrapper';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactsList } from './ContactsList/ContactsList';
-import { Filter } from './Filter/Filter';
-import { CircleLoader } from 'react-spinners';
-import { selectIsLoading } from 'redux/contacts.selectors';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Suspense, lazy, useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts';
 
+import { Route, Routes } from 'react-router-dom';
+import Navigation from './Navigation/Navigation';
+import { CircleLoader } from 'react-spinners';
+
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const HomePage = lazy(() => import('pages/HomePage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
+
+const appRoutes = [
+  { path: '/', element: <HomePage /> },
+  { path: '/register', element: <RegisterPage /> },
+  { path: '/login', element: <LoginPage /> },
+  { path: '/contacts', element: <ContactsPage /> },
+];
+
 export const App = () => {
-  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
+
   return (
-    <Wrapper>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      {isLoading === true && (
-        <CircleLoader
-          color="#670063"
-          size={100}
-          cssOverride={{
-            margin: '30px auto',
-            textAlign: 'center',
-            fontWeight: 'bold',
-          }}
-        />
-      )}
-      <ContactsList />
-    </Wrapper>
+    <>
+      <Navigation />
+
+      <Suspense
+        fallback={
+          <CircleLoader
+            color="#670063"
+            size={100}
+            cssOverride={{
+              margin: '30px auto',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            }}
+          />
+        }
+      >
+        <Routes>
+          {appRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
+        </Routes>
+      </Suspense>
+    </>
   );
 };

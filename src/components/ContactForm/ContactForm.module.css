@@ -21,7 +21,7 @@ input {
   color: purple;
   outline: 2px solid transparent;
 }
-.input:focus {
+input:focus {
   outline: 2px solid pink;
   border: 2px solid transparent;
 }

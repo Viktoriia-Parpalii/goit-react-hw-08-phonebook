@@ -2,7 +2,6 @@
   "name": "goit-react-hw-08-phonebook",
   "version": "0.1.0",
   "private": true,
-  
   "homepage": "https://Viktoriia-Parpalii.github.io/goit-react-hw-08-phonebook/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
@@ -13,7 +12,9 @@
     "nanoid": "^5.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-hook-form": "^7.47.0",
     "react-redux": "^8.1.3",
+    "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.3",
