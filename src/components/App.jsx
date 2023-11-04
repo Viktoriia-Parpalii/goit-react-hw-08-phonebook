@@ -26,28 +26,29 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <Wrapper>
+    <>
       <Navigation />
-
-      <Suspense
-        fallback={
-          <CircleLoader
-            color="#670063"
-            size={100}
-            cssOverride={{
-              margin: '30px auto',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            }}
-          />
-        }
-      >
-        <Routes>
-          {appRoutes.map(({ path, element }) => (
-            <Route key={path} path={path} element={element} />
-          ))}
-        </Routes>
-      </Suspense>
-    </Wrapper>
+      <Wrapper>
+        <Suspense
+          fallback={
+            <CircleLoader
+              color="#670063"
+              size={100}
+              cssOverride={{
+                margin: '30px auto',
+                textAlign: 'center',
+                fontWeight: 'bold',
+              }}
+            />
+          }
+        >
+          <Routes>
+            {appRoutes.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+          </Routes>
+        </Suspense>
+      </Wrapper>
+    </>
   );
 };
