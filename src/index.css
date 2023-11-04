@@ -94,4 +94,5 @@ button {
   width: 150px;
   color: purple;
   background-color: rgba(221, 160, 221, 0.534);
+  cursor: pointer;
 }

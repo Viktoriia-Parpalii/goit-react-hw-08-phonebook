@@ -3,6 +3,7 @@ import {
   requestLogout,
   requestRefreshUser,
   requestRegiser,
+  setToken,
 } from 'services/api';
 
 const { createSlice, createAsyncThunk, isAnyOf } = require('@reduxjs/toolkit');
@@ -34,16 +35,30 @@ export const registerThunk = createAsyncThunk(
     }
   }
 );
-export const refreshThunk = createAsyncThunk('auth/refresh', async thunkAPI => {
-  try {
-    const response = await requestRefreshUser();
-    console.log('response: ', response);
+export const refreshThunk = createAsyncThunk(
+  'auth/refresh',
+  async thunkAPI => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    try {
+      setToken(token);
+      const response = await requestRefreshUser();
+      console.log('response: ', response);
+      return response;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
 
-    return response;
-  } catch (error) {
-    thunkAPI.rejectWithValue(error.message);
+      if (!token) return false;
+      return true;
+    },
   }
-});
+);
 
 export const logOutThunk = createAsyncThunk(
   'auth/logOut',
