@@ -5,6 +5,7 @@ import { fetchContacts } from 'redux/contacts';
 import { Route, Routes } from 'react-router-dom';
 import Navigation from './Navigation/Navigation';
 import { CircleLoader } from 'react-spinners';
+import { Wrapper } from './Wrapper/Wrapper';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const HomePage = lazy(() => import('pages/HomePage'));
@@ -25,7 +26,7 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Wrapper>
       <Navigation />
 
       <Suspense
@@ -47,6 +48,6 @@ export const App = () => {
           ))}
         </Routes>
       </Suspense>
-    </>
+    </Wrapper>
   );
 };
