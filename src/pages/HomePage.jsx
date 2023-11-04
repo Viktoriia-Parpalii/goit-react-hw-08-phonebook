@@ -1,7 +1,21 @@
 import React from 'react';
+import Phonebook from 'images/phonebook.png';
+import { NavLink } from 'react-router-dom';
 
 const HomePage = () => {
-  return <h1>Welcome to my Phonebook</h1>;
+  return (
+    <>
+      <h1 className="tracking-in-expand-fwd">Welcome to my Phonebook!</h1>
+      <NavLink to={'/login'}>
+        <img
+          className="heartbeat"
+          src={Phonebook}
+          alt="phonebook"
+          width={250}
+        />
+      </NavLink>
+    </>
+  );
 };
 
 export default HomePage;
