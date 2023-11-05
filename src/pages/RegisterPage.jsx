@@ -19,37 +19,40 @@ const RegisterPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        <span>Email:</span>
-        <input
-          {...register('email', { required: true })}
-          type="email"
-          placeholder="etyjetttty@sddagd.ua"
-        />
-        {errors.email && <span>This field is required</span>}
-      </label>
-      <label>
-        <span>Name:</span>
-        <input
-          {...register('name', { required: true })}
-          type="text"
-          placeholder="Angelina"
-        />
-        {errors.name && <span>This field is required</span>}
-      </label>
-      <label>
-        <span>Password:</span>
-        <input
-          {...register('password', { required: true, minLength: 8 })}
-          type="password"
-          placeholder="12345678"
-        />
-        {errors.password && <span>This field is required</span>}
-      </label>
+    <>
+      <h2 className="tracking-in-expand-fwd">New user registration</h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>
+          <span>Email:</span>
+          <input
+            {...register('email', { required: true })}
+            type="email"
+            placeholder="etyjetttty@sddagd.ua"
+          />
+          {errors.email && <span>This field is required</span>}
+        </label>
+        <label>
+          <span>Name:</span>
+          <input
+            {...register('name', { required: true })}
+            type="text"
+            placeholder="Angelina"
+          />
+          {errors.name && <span>This field is required</span>}
+        </label>
+        <label>
+          <span>Password:</span>
+          <input
+            {...register('password', { required: true, minLength: 8 })}
+            type="password"
+            placeholder="12345678"
+          />
+          {errors.password && <span>This field is required</span>}
+        </label>
 
-      <button type="submit">Sign Up</button>
-    </form>
+        <button type="submit">Sign Up</button>
+      </form>
+    </>
   );
 };
 

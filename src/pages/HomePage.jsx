@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const HomePage = () => {
   return (
     <>
-      <h1 className="tracking-in-expand-fwd">Welcome to my Phonebook!</h1>
+      <h1 className="tracking-in-expand-fwd">Welcome to your Phone book!</h1>
       <NavLink to={'/login'}>
         <img
           className="heartbeat"

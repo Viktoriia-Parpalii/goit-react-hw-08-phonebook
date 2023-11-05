@@ -7,6 +7,7 @@ nav {
   display: flex;
   gap: 35px;
   justify-content: center;
+  align-items: center;
 }
 .navLink {
   width: 80px;
@@ -18,4 +19,28 @@ nav {
   border-radius: 10px;
   text-decoration: none;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  transition: all 250ms ease-in;
+}
+.navLinkHouse {
+  padding: 2px 5px;
+  width: 80px;
+  text-align: center;
+  color: purple;
+  background-color: #fff;
+
+  border: 2px solid purple;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  transition: all 250ms ease-in;
+}
+
+.navLink:is(:hover, :focus),
+.navLinkHouse:is(:hover, :focus),
+.navLink.active,
+.navLinkHouse.active {
+  background-color: purple;
+  color: white;
+  border: 2px solid white;
+  transform: scale(1.1);
 }
