@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { registerThunk } from 'redux/authReduser';
 
 const RegisterPage = () => {
@@ -14,7 +15,20 @@ const RegisterPage = () => {
 
   const onSubmit = data => {
     console.log('data: ', data);
-    dispatch(registerThunk(data));
+    dispatch(registerThunk(data))
+      .unwrap()
+      .then(() => {
+        toast.success('Hi! Register was successfully fetched!', {
+          position: 'top-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
     reset();
   };
 

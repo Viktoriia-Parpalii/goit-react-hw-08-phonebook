@@ -6,13 +6,27 @@ import css from './UserMenu.module.css';
 import { BiUserCheck } from 'react-icons/bi';
 import { IconContext } from 'react-icons';
 import { selectUserEmail } from 'redux/auth.selectors';
+import { toast } from 'react-toastify';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
   const userEmail = useSelector(selectUserEmail);
 
   const onLogOut = () => {
-    dispatch(logOutThunk());
+    dispatch(logOutThunk())
+      .unwrap()
+      .then(() => {
+        toast.info(' Logout was successful!', {
+          position: 'top-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
   };
   return (
     <div className={css.UserMenu}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { loginThunk } from 'redux/authReduser';
 
 const LoginPage = () => {
@@ -13,7 +14,21 @@ const LoginPage = () => {
   const dispatch = useDispatch();
 
   const onSubmit = data => {
-    dispatch(loginThunk(data));
+    dispatch(loginThunk(data))
+      .unwrap()
+      .then(() => {
+        toast.success('Hi! Login was successfully fetched!', {
+          position: 'top-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
+
     reset();
   };
 
