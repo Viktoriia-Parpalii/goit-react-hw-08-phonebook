@@ -1,16 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Suspense, lazy, useEffect } from 'react';
-
 import { Route, Routes } from 'react-router-dom';
-import Navigation from './Navigation/Navigation';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Navigation from './Navigation/Navigation';
 import { Wrapper } from './Wrapper/Wrapper';
-import { selectAuthIsAuth, selectAuthIsLoading } from 'redux/auth.selectors';
 import UserMenu from './UserMenu/UserMenu';
 import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-import { refreshThunk } from 'redux/authReduser';
 import Loader from './CircleLoader/CircleLoader';
+
+import {
+  selectAuthError,
+  selectAuthIsAuth,
+  selectAuthIsLoading,
+} from 'redux/auth.selectors';
+import { refreshThunk } from 'redux/authReduser';
+import { selectError } from 'redux/contacts.selectors';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const HomePage = lazy(() => import('pages/HomePage'));
@@ -50,6 +58,8 @@ export const App = () => {
 
   const isAuth = useSelector(selectAuthIsAuth);
   const isLoading = useSelector(selectAuthIsLoading);
+  const errorAuth = useSelector(selectAuthError);
+  const errorFetch = useSelector(selectError);
 
   useEffect(() => {
     dispatch(refreshThunk());
@@ -66,9 +76,22 @@ export const App = () => {
             ))}
           </Routes>
         </Suspense>
-        {isAuth && <UserMenu />}
+        {isAuth === true && <UserMenu />}
         {isLoading === true && <Loader />}
+        {errorAuth || (errorFetch && toast.error('Please try again!'))}
       </Wrapper>
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };

@@ -2,13 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOutThunk } from 'redux/authReduser';
 import css from './UserMenu.module.css';
-import { UserEmail } from 'redux/auth.selectors';
+
 import { BiUserCheck } from 'react-icons/bi';
 import { IconContext } from 'react-icons';
+import { selectUserEmail } from 'redux/auth.selectors';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const userEmail = useSelector(UserEmail);
+  const userEmail = useSelector(selectUserEmail);
 
   const onLogOut = () => {
     dispatch(logOutThunk());

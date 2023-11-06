@@ -33,7 +33,7 @@ export const registerThunk = createAsyncThunk(
 );
 export const refreshThunk = createAsyncThunk(
   'auth/refresh',
-  async thunkAPI => {
+  async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
     try {
@@ -96,7 +96,7 @@ const authSlice = createSlice({
       .addCase(refreshThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isAuth = true;
-        state.user = action.payload.user;
+        state.user = action.payload;
       })
       .addCase(logOutThunk.fulfilled, (state, action) => {
         return INITIAL_STATE;
