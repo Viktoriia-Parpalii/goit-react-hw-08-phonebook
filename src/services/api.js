@@ -26,7 +26,6 @@ export const requestLogout = async () => {
 
 export const requestRefreshUser = async () => {
   const { data } = await contactsInstance.get('/users/current');
-
   return data;
 };
 
